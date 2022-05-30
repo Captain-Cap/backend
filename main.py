@@ -1,5 +1,5 @@
 import json
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -10,6 +10,11 @@ baloons = [{'Firm': 'Maker Street', 'paint_code': 'ms400-504', 'color': 'grey-bl
 @app.get('/api/v1/baloons/')
 def get_baloons():
     return json.dumps(baloons)
+
+
+@app.post('/api/v1/baloons/')
+def add_baloons():
+    payload = request.json()
 
 
 if __name__ == "__main__":
