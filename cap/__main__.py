@@ -19,5 +19,10 @@ def add_baloons():
     return payload
 
 
+@app.delete('/api/v1/baloons/<int:id>/')
+def del_baloon(id):
+    pass
+
+
 if __name__ == "__main__":
     app.run(debug=True)
