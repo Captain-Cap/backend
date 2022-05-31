@@ -4,8 +4,8 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-baloons = [{'Firm': 'Maker Street', 'paint_code': 'ms400-504', 'color': 'grey-blue', 'volume': 400, 'starting_weight': 300},
-           {'Firm': 'Maker Street', 'paint_code': 'ms400-101', 'color': 'yellow', 'volume': 400, 'starting_weight': 300},]
+baloons = [{'id': 1, 'Firm': 'Maker Street', 'paint_code': 'ms400-504', 'color': 'grey-blue', 'volume': 400, 'starting_weight': 300},
+           {'id': 2, 'Firm': 'Maker Street', 'paint_code': 'ms400-101', 'color': 'yellow', 'volume': 400, 'starting_weight': 300},]
 
 @app.get('/api/v1/baloons/')
 def get_baloons():
@@ -15,6 +15,11 @@ def get_baloons():
 @app.post('/api/v1/baloons/')
 def add_baloons():
     payload = request.json
+
+    for baloon in baloons:
+        if payload['id'] == baloon['id']:
+            raise ValueError('such id already exists')
+
     baloons.append(payload)
     return payload
 
