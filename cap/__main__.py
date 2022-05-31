@@ -39,11 +39,18 @@ def add_baloons():
 
 @app.delete('/api/v1/baloons/<int:id>')
 def del_baloon(id):
-    for baloon in baloons:
-        if baloon['id'] == id:
-            del baloons[baloons.index(baloon)]
-            return baloon
-    raise IndexError("id does not exist")
+    value = baloons.get(id)
+    if value:
+        del baloons[id]
+    else:
+        raise IndexError("id does not exist")
+
+
+    # for baloon in baloons:
+    #     if baloon['id'] == id:
+    #         del baloons[baloons.index(baloon)]
+    #         return baloon
+    # raise IndexError("id does not exist")
 
 
 @app.put('/api/v1/baloons/')
