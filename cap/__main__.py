@@ -26,8 +26,6 @@ def add_baloons():
     return payload
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 @app.delete('/api/v1/baloons/<int:id>/')
 def del_baloon(id):
     for baloon in baloons:
@@ -36,7 +34,7 @@ def del_baloon(id):
             return baloon
     raise IndexError("id does not exist")
 
-=======
+
 @app.get('/api/v1/baloons/<int:id>/')
 def get_baloon_by_id(id):
     for baloon in baloons:
@@ -45,8 +43,6 @@ def get_baloon_by_id(id):
     raise IndexError("id does not exist")
 
 
->>>>>>> origin/add_ID
-=======
 @app.put('/api/v1/baloons/')
 def changed_balloon():
     payload = request.json
@@ -58,6 +54,5 @@ def changed_balloon():
     raise IndexError('id does not exist')
 
 
->>>>>>> changed_balloon
 if __name__ == "__main__":
     app.run(debug=True)
