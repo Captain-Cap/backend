@@ -23,7 +23,10 @@ def add_baloons():
 
 @app.get('/api/v1/baloons/<int:id>/')
 def get_baloon_by_id(id):
-    return "<h1>{}</h1>".format(id)
+    for baloon in baloons:
+        if baloon['id'] == id:
+            return baloon
+    raise IndexError("list index out of range")
 
 
 if __name__ == "__main__":
