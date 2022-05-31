@@ -1,11 +1,16 @@
 import json
 from flask import Flask, request
 
+
 app = Flask(__name__)
 
 
 baloons = [{'id': 1, 'Firm': 'Maker Street', 'paint_code': 'ms400-504', 'color': 'grey-blue', 'volume': 400, 'starting_weight': 300},
            {'id': 2, 'Firm': 'Maker Street', 'paint_code': 'ms400-101', 'color': 'yellow', 'volume': 400, 'starting_weight': 300},]
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/add_ID
 
 @app.get('/api/v1/baloons/')
 def get_baloons():
@@ -24,6 +29,7 @@ def add_baloons():
     return payload
 
 
+<<<<<<< HEAD
 @app.delete('/api/v1/baloons/<int:id>/')
 def del_baloon(id):
     for baloon in baloons:
@@ -32,5 +38,15 @@ def del_baloon(id):
             return baloon
     raise IndexError("id does not exist")
 
+=======
+@app.get('/api/v1/baloons/<int:id>/')
+def get_baloon_by_id(id):
+    for baloon in baloons:
+        if baloon['id'] == id:
+            return baloon
+    raise IndexError("id does not exist")
+
+
+>>>>>>> origin/add_ID
 if __name__ == "__main__":
     app.run(debug=True)
