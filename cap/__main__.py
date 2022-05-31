@@ -26,7 +26,7 @@ def get_baloon_by_id(id):
     for baloon in baloons:
         if baloon['id'] == id:
             return baloon
-    raise IndexError("list index out of range")
+    raise IndexError("id does not exist")
 
 
 if __name__ == "__main__":
