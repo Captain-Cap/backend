@@ -26,7 +26,7 @@ def add_baloons():
     return payload
 
 
-@app.delete('/api/v1/baloons/<int:id>/')
+@app.delete('/api/v1/baloons/<int:id>')
 def del_baloon(id):
     for baloon in baloons:
         if baloon['id'] == id:
@@ -35,7 +35,7 @@ def del_baloon(id):
     raise IndexError("id does not exist")
 
 
-@app.get('/api/v1/baloons/<int:id>/')
+@app.get('/api/v1/baloons/<int:id>')
 def get_baloon_by_id(id):
     for baloon in baloons:
         if baloon['id'] == id:
