@@ -1,8 +1,11 @@
 import json
 from flask import Flask, request, abort
+from views import ballons
+
 
 
 app = Flask(__name__)
+app.register_blueprint(ballons.routes, url_prefix='/api/v1/balloons')
 
 
 baloons = {
