@@ -13,12 +13,12 @@ baloons = {
 }
 
 
-@app.get('/api/v1/baloons/')
+@app.get('/')
 def get_baloons():
     return json.dumps(baloons)
 
 
-@app.get('/api/v1/baloons/<int:id>')
+@app.get('/<int:id>')
 def get_baloon_by_id(id):
     baloon = baloons.get(id)
     if not baloon:
@@ -26,7 +26,7 @@ def get_baloon_by_id(id):
     return baloon
 
 
-@app.post('/api/v1/baloons/')
+@app.post('/')
 def add_baloons():
     payload = request.json
     id_payload = payload['id']
@@ -37,7 +37,7 @@ def add_baloons():
     return payload
 
 
-@app.delete('/api/v1/baloons/<int:id>')
+@app.delete('/<int:id>')
 def del_baloon(id):
     baloon = baloons.get(id)
     if not baloon:
@@ -46,7 +46,7 @@ def del_baloon(id):
     return {}, 204
 
 
-@app.put('/api/v1/baloons/')
+@app.put('/')
 def changed_balloon():
     payload = request.json
     id_payload = payload['id']
