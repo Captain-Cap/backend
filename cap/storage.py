@@ -16,7 +16,7 @@ class BaloonsStorage:
         if not self.storage.get(uid):
             raise KeyError("balloon not found")
         del self.storage[uid]
-
+        return {}, 204
 
     def update(self, balloon):
         uid = balloon['id']

@@ -32,8 +32,7 @@ def add_baloons():
 @routes.delete('/<int:id>')
 def del_baloon(id):
     try:
-        storage.delete(id)
-        return {}, 204
+        return storage.delete(id)
     except KeyError:
         abort(404, "balloon not found")
 
