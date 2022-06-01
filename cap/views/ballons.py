@@ -3,8 +3,7 @@ from flask import Flask, request, abort
 from flask import Blueprint
 
 
-app = Flask(__name__)
-routes = Blueprint("ballons", __name__)
+routes = Blueprint("balloons", __name__)
 
 
 baloons = {
@@ -13,12 +12,12 @@ baloons = {
 }
 
 
-@app.get('/')
+@routes.get('/')
 def get_baloons():
     return json.dumps(baloons)
 
 
-@app.get('/<int:id>')
+@routes.get('/<int:id>')
 def get_baloon_by_id(id):
     baloon = baloons.get(id)
     if not baloon:
@@ -26,7 +25,7 @@ def get_baloon_by_id(id):
     return baloon
 
 
-@app.post('/')
+@routes.post('/')
 def add_baloons():
     payload = request.json
     id_payload = payload['id']
@@ -37,7 +36,7 @@ def add_baloons():
     return payload
 
 
-@app.delete('/<int:id>')
+@routes.delete('/<int:id>')
 def del_baloon(id):
     baloon = baloons.get(id)
     if not baloon:
@@ -46,7 +45,7 @@ def del_baloon(id):
     return {}, 204
 
 
-@app.put('/')
+@routes.put('/')
 def changed_balloon():
     payload = request.json
     id_payload = payload['id']
