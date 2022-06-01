@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request
+from flask import Flask, request, abort
 
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ def get_baloons():
 def get_baloon_by_id(id):
     baloon = baloons.get(id)
     if not baloon:
-        raise IndexError("id does not exist")
+        abort(404, "id does not exist")
     return baloon
 
 
@@ -30,8 +30,9 @@ def add_baloons():
     id_payload = payload['id']
     baloon = baloons.get(id_payload)
     if baloon:
-        raise ValueError('such id already exists')
+        abort(412, "such id already exists")
     baloons[id_payload] = payload
+    return 'True'
 
 
 @app.delete('/api/v1/baloons/<int:id>')
@@ -39,8 +40,9 @@ def del_baloon(id):
     baloon = baloons.get(id)
     if baloon:
         del baloons[id]
+        return 'True'
     else:
-        raise IndexError("id does not exist")
+        abort(412, "id does not exist")
 
 
 @app.put('/api/v1/baloons/')
@@ -50,8 +52,9 @@ def changed_balloon():
     baloon = baloons.get(id_payload)
     if baloon:
         baloons[id_payload] = payload
+        return 'True'
     else:
-        raise IndexError('id does not exist')
+        abort(412, "id does not exist")
 
 
 if __name__ == "__main__":
