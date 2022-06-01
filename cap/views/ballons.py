@@ -1,6 +1,4 @@
-import json
-from flask import Flask, request, abort
-from flask import Blueprint
+from flask import request, abort, Blueprint
 from cap.storage import BaloonsStorage
 
 
