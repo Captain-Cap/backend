@@ -34,4 +34,5 @@ class BaloonsStorage:
         return self.storage[uid]
 
 
-    
+    def get_all(self):
+        return self.storage
