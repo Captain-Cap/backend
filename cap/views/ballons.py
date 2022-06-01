@@ -1,7 +1,7 @@
 import json
 from flask import Flask, request, abort
 from flask import Blueprint
-from storage import BaloonsStorage
+from cap.storage import BaloonsStorage
 
 
 routes = Blueprint("balloons", __name__)
