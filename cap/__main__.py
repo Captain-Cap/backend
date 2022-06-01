@@ -20,7 +20,7 @@ def get_baloons():
 def get_baloon_by_id(id):
     baloon = baloons.get(id)
     if not baloon:
-        abort(404, "id does not exist")
+        abort(404, "balloon not found")
     return baloon
 
 
@@ -30,19 +30,18 @@ def add_baloons():
     id_payload = payload['id']
     baloon = baloons.get(id_payload)
     if baloon:
-        abort(412, "such id already exists")
+        abort(409, "such id already exists")
     baloons[id_payload] = payload
-    return 'True'
+    return payload
 
 
 @app.delete('/api/v1/baloons/<int:id>')
 def del_baloon(id):
     baloon = baloons.get(id)
-    if baloon:
-        del baloons[id]
-        return 'True'
-    else:
-        abort(412, "id does not exist")
+    if not baloon:
+        abort(404, "id does not exist")
+    del baloons[id]
+    return {}, 204
 
 
 @app.put('/api/v1/baloons/')
@@ -50,11 +49,10 @@ def changed_balloon():
     payload = request.json
     id_payload = payload['id']
     baloon = baloons.get(id_payload)
-    if baloon:
-        baloons[id_payload] = payload
-        return 'True'
-    else:
-        abort(412, "id does not exist")
+    if not baloon:
+        abort(404, "id does not exist")
+    baloons[id_payload] = payload
+    return payload
 
 
 if __name__ == "__main__":
