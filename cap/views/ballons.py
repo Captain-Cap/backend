@@ -23,13 +23,10 @@ def get_baloon_by_id(id):
 
 @routes.post('/')
 def add_baloons():
-    payload = request.json
-    id_payload = payload['id']
-    baloon = baloons.get(id_payload)
-    if baloon:
+    try:
+        return storage.add(request.json)
+    except ValueError:
         abort(409, "such id already exists")
-    baloons[id_payload] = payload
-    return payload
 
 
 @routes.delete('/<int:id>')
