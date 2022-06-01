@@ -10,7 +10,7 @@ storage = BaloonsStorage()
 
 @routes.get('/')
 def get_baloons():
-    storage.get_all()
+    return storage.get_all()
 
 
 @routes.get('/<int:id>')
@@ -32,7 +32,8 @@ def add_baloons():
 @routes.delete('/<int:id>')
 def del_baloon(id):
     try:
-        return storage.delete(id), 204
+        storage.delete(id)
+        return {}, 204
     except KeyError:
         abort(404, "balloon not found")
 
