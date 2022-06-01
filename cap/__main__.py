@@ -18,28 +18,26 @@ def get_baloons():
 
 @app.get('/api/v1/baloons/<int:id>')
 def get_baloon_by_id(id):
-    value = baloons.get(id)
-    if value:
-        return baloons[id]
-    raise IndexError("id does not exist")
+    baloon = baloons.get(id)
+    if not baloon:
+        raise IndexError("id does not exist")
+    return baloon
 
 
 @app.post('/api/v1/baloons/')
 def add_baloons():
     payload = request.json
     id_payload = payload['id']
-    value = baloons.get(id_payload)
-
-    if value:
+    baloon = baloons.get(id_payload)
+    if baloon:
         raise ValueError('such id already exists')
-    
     baloons[id_payload] = payload
 
 
 @app.delete('/api/v1/baloons/<int:id>')
 def del_baloon(id):
-    value = baloons.get(id)
-    if value:
+    baloon = baloons.get(id)
+    if baloon:
         del baloons[id]
     else:
         raise IndexError("id does not exist")
@@ -49,9 +47,8 @@ def del_baloon(id):
 def changed_balloon():
     payload = request.json
     id_payload = payload['id']
-    value = baloons.get(id_payload)
-
-    if value:
+    baloon = baloons.get(id_payload)
+    if baloon:
         baloons[id_payload] = payload
     else:
         raise IndexError('id does not exist')
