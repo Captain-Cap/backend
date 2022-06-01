@@ -24,7 +24,8 @@ def get_baloon_by_id(id):
 @routes.post('/')
 def add_baloons():
     try:
-        return storage.add(request.json)
+        storage.add(request.json)
+        return request.json
     except ValueError:
         abort(409, "such id already exists")
 
@@ -32,7 +33,8 @@ def add_baloons():
 @routes.delete('/<int:id>')
 def del_baloon(id):
     try:
-        return storage.delete(id)
+        storage.delete(id)
+        return {}, 204
     except KeyError:
         abort(404, "balloon not found")
 
@@ -40,6 +42,7 @@ def del_baloon(id):
 @routes.put('/')
 def change_balloon():
     try:
-        return storage.update(request.json)
+        storage.update(request.json)
+        return request.json
     except ValueError:
         abort(404, "id does not exist")
