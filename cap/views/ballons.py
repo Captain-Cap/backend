@@ -1,28 +1,24 @@
 import json
 from flask import Flask, request, abort
 from flask import Blueprint
+from storage import BaloonsStorage
 
 
 routes = Blueprint("balloons", __name__)
-
-
-baloons = {
-    1: {'id': 1, 'Firm': 'Maker Street', 'paint_code': 'ms400-504', 'color': 'grey-blue', 'volume': 400, 'starting_weight': 300},
-    2: {'id': 2, 'Firm': 'Maker Street', 'paint_code': 'ms400-101', 'color': 'yellow', 'volume': 400, 'starting_weight': 300},
-}
+storage = BaloonsStorage()
 
 
 @routes.get('/')
 def get_baloons():
-    return json.dumps(baloons)
+    storage.get_all()
 
 
 @routes.get('/<int:id>')
 def get_baloon_by_id(id):
-    baloon = baloons.get(id)
-    if not baloon:
+    try:
+        return storage.get_balloon_by_id(id)
+    except ValueError:
         abort(404, "balloon not found")
-    return baloon
 
 
 @routes.post('/')
