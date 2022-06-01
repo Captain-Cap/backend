@@ -28,4 +28,10 @@ class BaloonsStorage:
         self.storage[uid] = balloon
 
 
+    def get_balloon_by_id(self, uid):
+        if not self.storage.get(uid):
+            raise ValueError("balloon not found")
+        return self.storage[uid]
+
+
     
