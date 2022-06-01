@@ -31,19 +31,15 @@ def add_baloons():
 
 @routes.delete('/<int:id>')
 def del_baloon(id):
-    baloon = baloons.get(id)
-    if not baloon:
-        abort(404, "id does not exist")
-    del baloons[id]
-    return {}, 204
+    try:
+        return storage.delete(id), 204
+    except KeyError:
+        abort(404, "balloon not found")
 
 
 @routes.put('/')
-def changed_balloon():
-    payload = request.json
-    id_payload = payload['id']
-    baloon = baloons.get(id_payload)
-    if not baloon:
+def change_balloon():
+    try:
+        return storage.update(request.json)
+    except ValueError:
         abort(404, "id does not exist")
-    baloons[id_payload] = payload
-    return payload
