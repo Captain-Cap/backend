@@ -1,6 +1,6 @@
 from flask import request, abort, Blueprint
 from cap.storage import BalloonsStorage
-from cap.exception import ConflictError, NotFoundError
+from cap.errors import ConflictError, NotFoundError
 
 
 routes = Blueprint("balloons", __name__)
