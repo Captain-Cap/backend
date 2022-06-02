@@ -3,7 +3,6 @@ from flask import request, Blueprint
 from cap.storage import BalloonsStorage
 
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 routes = Blueprint("balloons", __name__)
