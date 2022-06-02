@@ -43,4 +43,4 @@ def change_balloon():
         storage.update(request.json)
         return request.json
     except ValueError:
-        abort(404, "id does not exist")
+        abort(404, "balloon not found")
