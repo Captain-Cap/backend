@@ -18,6 +18,6 @@ class NotFoundError(AppError):
     status = 404
 
     def __init__(self, entity: str, info: str) -> None:
-        super().__init__(reason=f'[{entity}] notFound {info}', status=self.status)
+        super().__init__(reason=f'[{entity}] NotFound {info}', status=self.status)
         self.entity = entity
         self.info = info

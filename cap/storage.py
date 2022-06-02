@@ -16,20 +16,20 @@ class BalloonsStorage:
 
     def delete(self, uid):
         if not self.storage.get(uid):
-            raise NotFoundError(self.name, "balloon not found")
+            raise NotFoundError(self.name, f"balloon id {uid} not found")
         del self.storage[uid]
 
 
     def update(self, balloon):
         uid = balloon['id']
         if not self.storage.get(uid):
-            raise NotFoundError(self.name, "balloon not found")
+            raise NotFoundError(self.name, f"balloon id {uid} not found")
         self.storage[uid] = balloon
 
 
     def get_balloon_by_id(self, uid):
         if not self.storage.get(uid):
-            raise NotFoundError(self.name, "balloon not found")
+            raise NotFoundError(self.name, f"balloon id {uid} not found")
         return self.storage[uid]
 
 
