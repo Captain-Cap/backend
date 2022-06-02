@@ -4,7 +4,7 @@ from flask import Flask
 from cap.views import balloons
 from cap.errors import AppError
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
