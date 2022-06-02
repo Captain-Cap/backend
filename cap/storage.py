@@ -1,5 +1,6 @@
 from cap.errors import ConflictError, NotFoundError
 
+
 class BalloonsStorage:
     name = 'balloons'
 
