@@ -1,18 +1,18 @@
 from flask import request, abort, Blueprint
-from cap.storage import BaloonsStorage
+from cap.storage import BalloonsStorage
 
 
 routes = Blueprint("balloons", __name__)
-storage = BaloonsStorage()
+storage = BalloonsStorage()
 
 
 @routes.get('/')
-def get_baloons():
+def get_balloons():
     return storage.get_all()
 
 
 @routes.get('/<int:id>')
-def get_baloon_by_id(id):
+def get_balloon_by_id(id):
     try:
         return storage.get_balloon_by_id(id)
     except ValueError:
@@ -20,7 +20,7 @@ def get_baloon_by_id(id):
 
 
 @routes.post('/')
-def add_baloons():
+def add_balloon():
     try:
         storage.add(request.json)
         return request.json
@@ -29,7 +29,7 @@ def add_baloons():
 
 
 @routes.delete('/<int:id>')
-def del_baloon(id):
+def del_balloon(id):
     try:
         storage.delete(id)
         return {}, 204

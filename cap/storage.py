@@ -1,4 +1,4 @@
-class BaloonsStorage:
+class BalloonsStorage:
 
     def __init__(self):
         self.storage = {}
