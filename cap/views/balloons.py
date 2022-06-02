@@ -1,5 +1,6 @@
 from flask import request, abort, Blueprint
 from cap.storage import BalloonsStorage
+from cap.exception import ConflictError, NotFoundError
 
 
 routes = Blueprint("balloons", __name__)
@@ -15,7 +16,7 @@ def get_balloons():
 def get_balloon_by_id(id):
     try:
         return storage.get_balloon_by_id(id)
-    except ValueError:
+    except NotFoundError:
         abort(404, "balloon not found")
 
 
@@ -24,7 +25,7 @@ def add_balloon():
     try:
         storage.add(request.json)
         return request.json
-    except ValueError:
+    except ConflictError:
         abort(409, "such id already exists")
 
 
@@ -33,7 +34,7 @@ def del_balloon(id):
     try:
         storage.delete(id)
         return {}, 204
-    except KeyError:
+    except NotFoundError:
         abort(404, "balloon not found")
 
 
@@ -42,5 +43,5 @@ def change_balloon():
     try:
         storage.update(request.json)
         return request.json
-    except ValueError:
+    except NotFoundError:
         abort(404, "balloon not found")
