@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def handle_app_errors(error: AppError):
-    logger.warning(error.reason)
+    logger.info(error.reason)
     return {'error': error.reason}, error.status
 
 
