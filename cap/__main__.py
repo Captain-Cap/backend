@@ -1,8 +1,15 @@
+import logging
+
 from flask import Flask
 from cap.views import balloons
 from cap.errors import AppError
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
 def handle_app_errors(error: AppError):
+    logger.warning(error.reason)
     return {'error': error.reason}, error.status
 
 
