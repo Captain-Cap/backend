@@ -1,4 +1,4 @@
-from cap.exception import ConflictError, NotFoundError
+from cap.errors import ConflictError, NotFoundError
 
 class BalloonsStorage:
     name = 'balloons'
@@ -10,7 +10,7 @@ class BalloonsStorage:
     def add(self, balloon):
         uid = balloon['id']
         if self.storage.get(uid):
-            raise ConflictError(self.name, "such id already exists")
+            raise ConflictError(self.name, f"id {uid} already exists")
         self.storage[uid] = balloon
 
 
