@@ -1,4 +1,7 @@
+from itertools import count
 from cap.errors import ConflictError, NotFoundError
+from cap.schemas import CorrectBalloon
+
 
 
 class BalloonsStorage:
@@ -6,10 +9,13 @@ class BalloonsStorage:
 
     def __init__(self):
         self.storage = {}
+        self.last_id = count(1)
 
 
     def add(self, balloon):
-        uid = balloon['id']
+        balloon = CorrectBalloon(**balloon).dict()
+        del balloon['id']
+        uid = next(self.last_id)
         if self.storage.get(uid):
             raise ConflictError(self.name, f"reason: id {uid} already exists")
         self.storage[uid] = balloon
@@ -22,6 +28,7 @@ class BalloonsStorage:
 
 
     def update(self, balloon):
+        balloon = CorrectBalloon(id=balloon["id"], **balloon["fields"]).dict()
         uid = balloon['id']
         if not self.storage.get(uid):
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
