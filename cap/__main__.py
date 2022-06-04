@@ -25,4 +25,4 @@ app.register_error_handler(ValidationError, handle_pydantic_errors)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
