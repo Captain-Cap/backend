@@ -1,6 +1,8 @@
+import json
 import logging
 from flask import request, Blueprint
 from cap.storage import BalloonsStorage
+from cap.schemas import CorrectBalloon
 
 
 logger = logging.getLogger(__name__)
@@ -12,30 +14,35 @@ storage = BalloonsStorage()
 @routes.get('/')
 def get_balloons():
     logger.debug("request get balloons")
-    return storage.get_all()
+    balloons =  storage.get_all()
+    return json.dumps([balloon.dict() for balloon in balloons])
 
 
-@routes.get('/<int:id>')
-def get_balloon_by_id(id):
+@routes.get('/<int:uid>')
+def get_balloon_by_id(uid):
     logger.debug("request get balloon on id")
-    return storage.get_balloon_by_id(id)
+    return storage.get_balloon_by_id(uid)
 
 
 @routes.post('/')
 def add_balloon():
     logger.debug("request add balloon")
-    storage.add(request.json)
-    return request.json
+    payload = request.json
+    balloon = CorrectBalloon(**payload)
+    balloon = storage.add(balloon)
+    return balloon.dict()
 
 
-@routes.delete('/<int:id>')
-def del_balloon(id):
+@routes.delete('/<int:uid>')
+def del_balloon(uid):
     logger.debug("request delete balloon")
-    storage.delete(id)
+    storage.delete(uid)
     return {}, 204
 
 
-@routes.put('/')
-def change_balloon():
-    storage.update(request.json)
-    return request.json
+@routes.put('/<int:uid>')
+def change_balloon(uid):
+    payload = request.json
+    balloon = CorrectBalloon(**payload)
+    balloon = storage.update(balloon)
+    return balloon.dict()

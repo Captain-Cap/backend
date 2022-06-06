@@ -1,4 +1,8 @@
-from cap.errors import ConflictError, NotFoundError
+from typing import List
+from itertools import count
+from cap.errors import NotFoundError
+from cap.schemas import CorrectBalloon
+
 
 
 class BalloonsStorage:
@@ -6,13 +10,13 @@ class BalloonsStorage:
 
     def __init__(self):
         self.storage = {}
+        self.last_id = count(1)
 
 
-    def add(self, balloon):
-        uid = balloon['id']
-        if self.storage.get(uid):
-            raise ConflictError(self.name, f"reason: id {uid} already exists")
-        self.storage[uid] = balloon
+    def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
+        balloon.uid = next(self.last_id)
+        self.storage[balloon.uid] = balloon
+        return balloon
 
 
     def delete(self, uid):
@@ -21,11 +25,11 @@ class BalloonsStorage:
         del self.storage[uid]
 
 
-    def update(self, balloon):
-        uid = balloon['id']
-        if not self.storage.get(uid):
-            raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
-        self.storage[uid] = balloon
+    def update(self, balloon: CorrectBalloon) -> CorrectBalloon:
+        if balloon.uid not in self.storage:
+            raise NotFoundError(self.name, f"reason: balloon id {balloon.uid} not found")
+        self.storage[balloon.uid] = balloon
+        return balloon
 
 
     def get_balloon_by_id(self, uid):
@@ -34,5 +38,5 @@ class BalloonsStorage:
         return self.storage[uid]
 
 
-    def get_all(self):
-        return self.storage
+    def get_all(self) -> List[CorrectBalloon]:
+        return [balloon for balloon in self.storage.values()]

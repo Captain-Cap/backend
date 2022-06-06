@@ -9,7 +9,8 @@
             "type": "python",
             "request": "launch",
             "module": "cap",
-            "justMyCode": true
+            "justMyCode": true,
+            "console": "internalConsole"
         }
     ]
 }
