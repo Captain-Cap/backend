@@ -1,11 +1,12 @@
 from typing import List
+from cap.factory import BalloonStorage
 from itertools import count
 from cap.errors import NotFoundError
 from cap.schemas import CorrectBalloon
 
 
 
-class FakeBalloonsStorage:
+class FakeBalloonsStorage(BalloonStorage):
     name = 'balloons'
 
     def __init__(self):
@@ -19,7 +20,7 @@ class FakeBalloonsStorage:
         return balloon
 
 
-    def delete(self, uid):
+    def delete(self, uid) -> None:
         if not self.storage.get(uid):
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
         del self.storage[uid]
@@ -32,7 +33,7 @@ class FakeBalloonsStorage:
         return balloon
 
 
-    def get_balloon_by_id(self, uid):
+    def get_balloon_by_id(self, uid) -> CorrectBalloon:
         if not self.storage.get(uid):
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
         return self.storage[uid]
