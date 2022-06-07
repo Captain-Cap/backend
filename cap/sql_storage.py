@@ -8,7 +8,7 @@ from cap.db import db_session
 
 
 
-class BalloonsStorageSQL:
+class SQLBalloonsStorage:
     name = 'balloons'
 
 
