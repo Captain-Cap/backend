@@ -1,11 +1,12 @@
 from typing import List
+from cap.factory import BalloonStorage
 from itertools import count
 from cap.errors import NotFoundError
 from cap.schemas import CorrectBalloon
 
 
 
-class FakeBalloonsStorage:
+class FakeBalloonsStorage(BalloonStorage):
     name = 'balloons'
 
     def __init__(self):

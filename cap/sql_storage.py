@@ -1,4 +1,5 @@
 from typing import List
+from cap.factory import BalloonStorage
 from cap.errors import NotFoundError
 from cap.schemas import CorrectBalloon
 from datetime import datetime
@@ -8,7 +9,7 @@ from cap.db import db_session
 
 
 
-class SQLBalloonsStorage:
+class SQLBalloonsStorage(BalloonStorage):
     name = 'balloons'
 
 
