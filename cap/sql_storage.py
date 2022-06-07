@@ -36,7 +36,7 @@ class BalloonsStorageSQL:
 
     def update(self, balloon: CorrectBalloon) -> Balloons:
         entity = Balloons.query.filter(Balloons.uid == balloon.uid).first()
-        if not balloon:
+        if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {balloon.uid} not found")
         entity.firm = balloon.firm,
         entity.paint_code = balloon.paint_code,
