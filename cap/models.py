@@ -11,7 +11,7 @@ class Balloons(Base):
     color = Column(String())
     volume = Column(String())
     weight = Column(Integer)
-    created = Column(String())
+    created = Column(Date())
 
     def __repr__(self) -> str:
         return f"Balloons {self.uid} {self.firm} {self.paint_code} {self.color} {self.volume} {self.weight} {self.created}"
