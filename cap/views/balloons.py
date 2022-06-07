@@ -1,15 +1,24 @@
+import os
 import orjson
 import logging
+from cap.storage import FakeBalloonsStorage
+from cap.sql_storage import SQLBalloonsStorage
+from cap.factory import BalloonStorage
 from flask import request, Blueprint
 from cap.schemas import CorrectBalloon
-
-from cap.sql_storage import BalloonsStorageSQL
 
 
 logger = logging.getLogger(__name__)
 
+
+def create_storage() -> BalloonStorage:
+    if os.environ['STORAGE'] == 'fake':
+        return FakeBalloonsStorage()
+    return SQLBalloonsStorage()
+
+
 routes = Blueprint("balloons", __name__)
-sql_storage = BalloonsStorageSQL()
+sql_storage = create_storage()
 
 
 @routes.get('/')
