@@ -1,17 +1,16 @@
 from abc import ABC, abstractmethod
-from typing import List, Union
-from cap.models import Balloons
+from typing import List
 from cap.schemas import CorrectBalloon
 
 class BalloonStorage(ABC):
 
     @abstractmethod
-    def add(self, baloon):
+    def add(self, baloon: CorrectBalloon) -> CorrectBalloon:
         raise NotImplementedError
 
 
     @abstractmethod
-    def delete(self, uid):
+    def delete(self, uid: int) -> None:
         raise NotImplementedError
 
 
@@ -21,10 +20,10 @@ class BalloonStorage(ABC):
 
 
     @abstractmethod
-    def get_balloon_by_id(self, uid):
+    def get_balloon_by_id(self, uid: int) -> CorrectBalloon:
         raise NotImplementedError
 
 
     @abstractmethod
-    def get_all(self) -> List[Union[Balloons, CorrectBalloon]]:
+    def get_all(self) -> List[CorrectBalloon]:
         raise NotImplementedError
