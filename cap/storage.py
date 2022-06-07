@@ -20,7 +20,7 @@ class FakeBalloonsStorage(BalloonStorage):
         return balloon
 
 
-    def delete(self, uid):
+    def delete(self, uid) -> None:
         if not self.storage.get(uid):
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
         del self.storage[uid]
@@ -33,7 +33,7 @@ class FakeBalloonsStorage(BalloonStorage):
         return balloon
 
 
-    def get_balloon_by_id(self, uid):
+    def get_balloon_by_id(self, uid) -> CorrectBalloon:
         if not self.storage.get(uid):
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
         return self.storage[uid]

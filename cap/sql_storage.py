@@ -13,7 +13,7 @@ class SQLBalloonsStorage(BalloonStorage):
     name = 'balloons'
 
 
-    def add(self, balloon: CorrectBalloon) -> Balloons:
+    def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
         entity = Balloons(
             firm = balloon.firm,
             paint_code = balloon.paint_code,
@@ -26,10 +26,10 @@ class SQLBalloonsStorage(BalloonStorage):
         )
         db_session.add(entity)
         db_session.commit()
-        return entity
+        return CorrectBalloon.from_orm(entity)
 
 
-    def delete(self, uid):
+    def delete(self, uid) -> None:
         entity = Balloons.query.filter(Balloons.uid == uid).first()
         if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
@@ -37,7 +37,7 @@ class SQLBalloonsStorage(BalloonStorage):
         db_session.commit()
 
 
-    def update(self, balloon: CorrectBalloon) -> Balloons:
+    def update(self, balloon: CorrectBalloon) -> CorrectBalloon:
         entity = Balloons.query.filter(Balloons.uid == balloon.uid).first()
         if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {balloon.uid} not found")
@@ -48,15 +48,15 @@ class SQLBalloonsStorage(BalloonStorage):
         entity.weight = balloon.weight,
         entity.updated_at = datetime.now(),
         db_session.commit()
-        return entity
+        return CorrectBalloon.from_orm(entity)
 
 
-    def get_balloon_by_id(self, uid):
+    def get_balloon_by_id(self, uid) -> CorrectBalloon:
         entity = Balloons.query.filter(Balloons.uid == uid).first()
         if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
-        return entity
+        return CorrectBalloon.from_orm(entity)
 
 
-    def get_all(self) -> List[Balloons]:
-        return Balloons.query.all()
+    def get_all(self) -> List[CorrectBalloon]:
+        return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]
