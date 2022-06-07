@@ -11,6 +11,14 @@
             "module": "cap",
             "justMyCode": true,
             "console": "internalConsole"
+        },
+        {
+            "name": "Python: Миграция",
+            "type": "python",
+            "request": "launch",
+            "module": "cap.models",
+            "justMyCode": true,
+            "console": "internalConsole"
         }
     ]
 }
