@@ -13,7 +13,7 @@
             "console": "internalConsole"
         },
         {
-            "name": "Python: Миграция",
+            "name": "Python: migration",
             "type": "python",
             "request": "launch",
             "module": "cap.models",
