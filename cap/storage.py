@@ -5,7 +5,7 @@ from cap.schemas import CorrectBalloon
 
 
 
-class BalloonsStorage:
+class FakeBalloonsStorage:
     name = 'balloons'
 
     def __init__(self):

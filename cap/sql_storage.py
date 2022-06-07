@@ -8,7 +8,7 @@ from cap.db import db_session
 
 
 
-class BalloonsStorageSQL:
+class SQLBalloonsStorage:
     name = 'balloons'
 
 
@@ -17,9 +17,11 @@ class BalloonsStorageSQL:
             firm = balloon.firm,
             paint_code = balloon.paint_code,
             color = balloon.color,
-            voluem = balloon.volume,
+            volume = balloon.volume,
             weight = balloon.weight,
-            created = datetime.now(),
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
+            acceptance_date = balloon.acceptance_date,
         )
         db_session.add(entity)
         db_session.commit()
@@ -30,19 +32,20 @@ class BalloonsStorageSQL:
         entity = Balloons.query.filter(Balloons.uid == uid).first()
         if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
-        db_session.delete(Balloons)
+        db_session.delete(entity)
         db_session.commit()
 
 
     def update(self, balloon: CorrectBalloon) -> Balloons:
         entity = Balloons.query.filter(Balloons.uid == balloon.uid).first()
-        if not balloon:
+        if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {balloon.uid} not found")
         entity.firm = balloon.firm,
         entity.paint_code = balloon.paint_code,
         entity.color = balloon.color,
         entity.voluem = balloon.volume,
         entity.weight = balloon.weight,
+        entity.updated_at = datetime.now(),
         db_session.commit()
         return entity
 

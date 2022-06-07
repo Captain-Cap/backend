@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, Integer, String, TIMESTAMP
 from cap.db import Base, engine
 
 
@@ -11,7 +11,13 @@ class Balloons(Base):
     color = Column(String())
     volume = Column(String())
     weight = Column(Integer)
-    created = Column(Date())
+    created_at = Column(TIMESTAMP(timezone=True))
+    updated_at = Column(TIMESTAMP(timezone=True))
+    acceptance_date = Column(TIMESTAMP(timezone=True))
 
     def __repr__(self) -> str:
         return f"Balloons {self.uid} {self.firm} {self.paint_code} {self.color} {self.volume} {self.weight} {self.created}"
+
+
+if __name__ == "__main__":
+    Base.metadata.create_all(bind=engine)
