@@ -19,7 +19,8 @@ class BalloonsStorageSQL:
             color = balloon.color,
             volume = balloon.volume,
             weight = balloon.weight,
-            created = datetime.now(),
+            created_at = datetime.now().replace(microsecond=0).isoformat(),
+            updated_at = datetime.now().replace(microsecond=0).isoformat(),
         )
         db_session.add(entity)
         db_session.commit()
@@ -43,6 +44,7 @@ class BalloonsStorageSQL:
         entity.color = balloon.color,
         entity.voluem = balloon.volume,
         entity.weight = balloon.weight,
+        entity.updated_at = datetime.now().replace(microsecond=0).isoformat(),
         db_session.commit()
         return entity
 
