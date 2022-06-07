@@ -32,7 +32,7 @@ def add_balloon():
     payload = request.json
     balloon = CorrectBalloon(**payload)
     entity = sql_storage.add(balloon)
-    return CorrectBalloon.from_orm(entity).dict()
+    return orjson.dumps(CorrectBalloon.from_orm(entity).dict())
 
 
 @routes.delete('/<int:uid>')
