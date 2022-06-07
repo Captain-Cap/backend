@@ -17,7 +17,7 @@ class BalloonsStorageSQL:
             firm = balloon.firm,
             paint_code = balloon.paint_code,
             color = balloon.color,
-            voluem = balloon.volume,
+            volume = balloon.volume,
             weight = balloon.weight,
             created = datetime.now(),
         )
@@ -30,7 +30,7 @@ class BalloonsStorageSQL:
         entity = Balloons.query.filter(Balloons.uid == uid).first()
         if not entity:
             raise NotFoundError(self.name, f"reason: balloon id {uid} not found")
-        db_session.delete(Balloons)
+        db_session.delete(entity)
         db_session.commit()
 
 
