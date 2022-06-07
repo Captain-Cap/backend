@@ -9,4 +9,4 @@ class CorrectBalloon(BaseModel):
     paint_code: str
     color: str
     volume: int
-    starting_weight: conint(gt=0)
+    weight: conint(gt=0)
