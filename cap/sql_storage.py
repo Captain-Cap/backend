@@ -21,6 +21,7 @@ class BalloonsStorageSQL:
             weight = balloon.weight,
             created_at = datetime.now(),
             updated_at = datetime.now(),
+            acceptance_date = balloon.acceptance_date,
         )
         db_session.add(entity)
         db_session.commit()
