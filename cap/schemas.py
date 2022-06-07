@@ -11,7 +11,8 @@ class CorrectBalloon(BaseModel):
     color: str
     volume: int
     weight: conint(gt=0)
-    created: Optional[date]
+    created_at: date
+    updated_at: date
 
     class Config:
         orm_mode = True
