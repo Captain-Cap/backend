@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date
-from db import Base, engine
+from cap.db import Base, engine
 
 
 class Balloons(Base):
@@ -12,3 +12,6 @@ class Balloons(Base):
     volume = Column(String())
     weight = Column(Integer)
     created = Column(Date())
+
+    def __repr__(self) -> str:
+        return f"Balloons {self.uid} {self.firm} {self.paint_code} {self.color} {self.volume} {self.weight} {self.created}"
