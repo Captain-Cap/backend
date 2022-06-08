@@ -30,6 +30,23 @@ Freeze requirement versions:
 pip freeze # находим нужные библиотеки и фиксируем версии в requirements.txt
 ```
 
+.env
+```text
+fill in env as specified in .env/template
+```
+
+
+
+Docker
+
+```bash
+docker-compose down 
+docker-compose up -d db 
+```
+```test
+start local server
+```
+
 Run:
 
 ```bash
