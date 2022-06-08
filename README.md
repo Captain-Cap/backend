@@ -33,5 +33,7 @@ pip freeze # находим нужные библиотеки и фиксиру�
 Run:
 
 ```bash
+python -m cap.models
+
 python -m cap
 ```
