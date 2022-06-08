@@ -1,10 +1,11 @@
 
+from sqlalchemy import TIMESTAMP, Column, Integer, String
+
 from cap.db import Base, engine
-from sqlalchemy import Column, Integer, String, TIMESTAMP
 
 
 class Balloons(Base):
-    __tablename__ = "balloons"
+    __tablename__ = 'balloons'
 
     uid = Column(Integer, primary_key=True)
     firm = Column(String())
@@ -17,8 +18,8 @@ class Balloons(Base):
     acceptance_date = Column(TIMESTAMP(timezone=True))
 
     def __repr__(self) -> str:
-        return f"Balloons {self.uid} {self.firm} {self.paint_code} {self.color} {self.volume} {self.weight} {self.created}"
+        return f'Balloons {self.uid} {self.firm} {self.color} {self.weight}'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)
