@@ -3,3 +3,5 @@ pydantic==1.9.1
 SQLAlchemy==1.4.37
 psycopg2-binary==2.9.3
 orjson==3.7.1
+mypy==0.961
+wemake-python-styleguide==0.16.1
