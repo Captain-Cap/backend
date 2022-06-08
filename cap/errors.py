@@ -8,16 +8,16 @@ class AppError(Exception):
 class ConflictError(AppError):
     status = 409
 
-    def __init__(self, entity: str, info: str) -> None:
-        super().__init__(reason=f'[{entity}] conflict {info}', status=self.status)
+    def __init__(self, entity: str, descr: str) -> None:
+        super().__init__(reason=f'[{entity}] conflict {descr}', status=self.status)
         self.entity = entity
-        self.info = info
+        self.descr = descr
 
 
 class NotFoundError(AppError):
     status = 404
 
-    def __init__(self, entity: str, info: str) -> None:
-        super().__init__(reason=f'[{entity}] NotFound {info}', status=self.status)
+    def __init__(self, entity: str, descr: str) -> None:
+        super().__init__(reason=f'[{entity}] NotFound {descr}', status=self.status)
         self.entity = entity
-        self.info = info
+        self.descr = descr

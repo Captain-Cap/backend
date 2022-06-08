@@ -1,9 +1,10 @@
 import logging
 
-from pydantic import ValidationError
 from flask import Flask
-from cap.views import balloons
+from pydantic import ValidationError
+
 from cap.errors import AppError
+from cap.views import balloons
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -12,6 +13,7 @@ logger = logging.getLogger(__name__)
 def handle_app_errors(error: AppError):
     logger.warning(error.reason)
     return {'error': error.reason}, error.status
+
 
 def handle_validation_errors(error: ValidationError):
     logger.warning(str(error))
@@ -24,5 +26,5 @@ app.register_error_handler(AppError, handle_app_errors)
 app.register_error_handler(ValidationError, handle_validation_errors)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
