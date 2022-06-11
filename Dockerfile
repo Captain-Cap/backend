@@ -10,6 +10,6 @@ COPY poetry.lock pyproject.toml /app/
 
 RUN poetry install --no-dev
 
-COPY backend /app/backend
+COPY cap /app/cap
 
-CMD ["python", "-m", "backend"]
+CMD ["python", "-m", "cap"]
