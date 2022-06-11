@@ -27,4 +27,4 @@ app.register_error_handler(ValidationError, handle_validation_errors)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
