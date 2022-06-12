@@ -2,7 +2,7 @@
 name = "astor"
 version = "0.8.1"
 description = "Read/rewrite/write Python ASTs"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
 
@@ -10,7 +10,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
 name = "attrs"
 version = "21.4.0"
 description = "Classes Without Boilerplate"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -24,7 +24,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 name = "bandit"
 version = "1.7.4"
 description = "Security oriented static analyser for python code."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -62,7 +62,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "darglint"
 version = "1.8.1"
 description = "A utility for ensuring Google-style docstrings stay up to date with the source code."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -70,7 +70,7 @@ python-versions = ">=3.6,<4.0"
 name = "docutils"
 version = "0.18.1"
 description = "Docutils -- Python Documentation Utilities"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -78,7 +78,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "eradicate"
 version = "2.1.0"
 description = "Removes commented-out code."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -99,7 +99,7 @@ pyflakes = ">=2.4.0,<2.5.0"
 name = "flake8-bandit"
 version = "3.0.0"
 description = "Automated security testing with bandit and flake8."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -113,7 +113,7 @@ pycodestyle = "*"
 name = "flake8-broken-line"
 version = "0.4.0"
 description = "Flake8 plugin to forbid backslashes for line breaks"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -124,7 +124,7 @@ flake8 = ">=3.5,<5"
 name = "flake8-bugbear"
 version = "22.4.25"
 description = "A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -139,7 +139,7 @@ dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit"]
 name = "flake8-commas"
 version = "2.1.0"
 description = "Flake8 lint for trailing commas."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -150,7 +150,7 @@ flake8 = ">=2"
 name = "flake8-comprehensions"
 version = "3.10.0"
 description = "A flake8 plugin to help you write better list/set/dict comprehensions."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -161,7 +161,7 @@ flake8 = ">=3.0,<3.2.0 || >3.2.0"
 name = "flake8-debugger"
 version = "4.1.2"
 description = "ipdb/pdb statement checker plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -173,7 +173,7 @@ pycodestyle = "*"
 name = "flake8-docstrings"
 version = "1.6.0"
 description = "Extension for flake8 which uses pydocstyle to check docstrings"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -185,7 +185,7 @@ pydocstyle = ">=2.1"
 name = "flake8-eradicate"
 version = "1.2.1"
 description = "Flake8 plugin to find commented out code"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -198,7 +198,7 @@ flake8 = ">=3.5,<5"
 name = "flake8-isort"
 version = "4.1.1"
 description = "flake8 plugin that integrates isort ."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -214,7 +214,7 @@ test = ["pytest-cov"]
 name = "flake8-polyfill"
 version = "1.0.2"
 description = "Polyfill package for Flake8 plugins"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -225,7 +225,7 @@ flake8 = "*"
 name = "flake8-quotes"
 version = "3.3.1"
 description = "Flake8 lint for quotes."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -236,7 +236,7 @@ flake8 = "*"
 name = "flake8-rst-docstrings"
 version = "0.2.6"
 description = "Python docstring reStructuredText (RST) validator"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -249,7 +249,7 @@ restructuredtext-lint = "*"
 name = "flake8-string-format"
 version = "0.3.0"
 description = "string format checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -279,7 +279,7 @@ dotenv = ["python-dotenv"]
 name = "gitdb"
 version = "4.0.9"
 description = "Git Object Database"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -290,7 +290,7 @@ smmap = ">=3.0.1,<6"
 name = "gitpython"
 version = "3.1.27"
 description = "GitPython is a python library used to interact with Git repositories"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -328,7 +328,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 name = "isort"
 version = "5.10.1"
 description = "A Python utility / library to sort Python imports."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6.1,<4.0"
 
@@ -380,7 +380,7 @@ python-versions = "*"
 name = "mypy"
 version = "0.961"
 description = "Optional static typing for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -398,7 +398,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -414,7 +414,7 @@ python-versions = ">=3.7"
 name = "pbr"
 version = "5.9.0"
 description = "Python Build Reasonableness"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.6"
 
@@ -422,7 +422,7 @@ python-versions = ">=2.6"
 name = "pep8-naming"
 version = "0.12.1"
 description = "Check PEP-8 naming conventions, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -465,7 +465,7 @@ email = ["email-validator (>=1.0.3)"]
 name = "pydocstyle"
 version = "6.1.1"
 description = "Python docstring style checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -487,7 +487,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "pygments"
 version = "2.12.0"
 description = "Pygments is a syntax highlighting package written in Python."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -495,7 +495,7 @@ python-versions = ">=3.6"
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -503,7 +503,7 @@ python-versions = ">=3.6"
 name = "restructuredtext-lint"
 version = "1.4.0"
 description = "reStructuredText linter"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -514,7 +514,7 @@ docutils = ">=0.11,<1.0"
 name = "smmap"
 version = "5.0.0"
 description = "A pure Python implementation of a sliding window memory map manager"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -522,7 +522,7 @@ python-versions = ">=3.6"
 name = "snowballstemmer"
 version = "2.2.0"
 description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -562,7 +562,7 @@ sqlcipher = ["sqlcipher3-binary"]
 name = "stevedore"
 version = "3.5.0"
 description = "Manage dynamic plugins for Python applications"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -573,7 +573,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 name = "testfixtures"
 version = "6.18.5"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -586,7 +586,7 @@ test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybi
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -602,7 +602,7 @@ python-versions = ">=3.7"
 name = "wemake-python-styleguide"
 version = "0.16.1"
 description = "The strictest and most opinionated python linter ever"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -653,7 +653,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c2294584942b2ec4474503953250e48b2e864d0d8bd7ddd11d85fdd2569c1848"
+content-hash = "77d921b06aa03d696ff3e3baac1d7f4fe9d6268ab4ab573132bf6e1a28edb672"
 
 [metadata.files]
 astor = [
