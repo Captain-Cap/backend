@@ -5,7 +5,7 @@ description = ""
 authors = ["Vladislav Gorokhov <gvsnbala@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 Flask = "^2.1.2"
 flake8 = "^4.0.1"
 pydantic = "^1.9.1"
