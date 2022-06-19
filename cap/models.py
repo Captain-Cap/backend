@@ -21,5 +21,13 @@ class Balloons(Base):
         return f'Balloons {self.uid} {self.firm} {self.color} {self.weight}'
 
 
+class Project(Base):
+    __tablename__ = 'project'
+
+    uid = Column(Integer, primary_key=True)
+    name = Column(String)
+    created_at = Column(TIMESTAMP(timezone=True))
+
+
 if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)
