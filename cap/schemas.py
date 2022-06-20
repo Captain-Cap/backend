@@ -16,3 +16,13 @@ class CorrectBalloon(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Project(BaseModel):
+
+    uid: int
+    name: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True

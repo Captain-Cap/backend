@@ -1,14 +1,12 @@
 from datetime import datetime
-from typing import List
 
 from cap.db import db_session
 from cap.errors import NotFoundError
-from cap.factory import BalloonStorage
 from cap.models import Balloons
 from cap.schemas import CorrectBalloon
 
 
-class SQLBalloonsStorage(BalloonStorage):
+class BalloonsStorage():
     name = 'balloons'
 
     def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
@@ -56,5 +54,5 @@ class SQLBalloonsStorage(BalloonStorage):
 
         return CorrectBalloon.from_orm(entity)
 
-    def get_all(self) -> List[CorrectBalloon]:
+    def get_all(self) -> list[CorrectBalloon]:
         return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]

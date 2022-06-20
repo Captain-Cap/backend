@@ -4,7 +4,7 @@ from flask import Flask
 from pydantic import ValidationError
 
 from cap.errors import AppError
-from cap.views import balloons
+from cap.views import balloons, project
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,7 +21,10 @@ def handle_validation_errors(error: ValidationError):
 
 
 app = Flask(__name__)
+
+app.register_blueprint(project.routes, url_prefix='/api/v1/projects/')
 app.register_blueprint(balloons.routes, url_prefix='/api/v1/balloons/')
+
 app.register_error_handler(AppError, handle_app_errors)
 app.register_error_handler(ValidationError, handle_validation_errors)
 
