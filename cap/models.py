@@ -22,7 +22,7 @@ class Balloons(Base):
 
 
 class Project(Base):
-    __tablename__ = 'project'
+    __tablename__ = 'projects'
 
     uid = Column(Integer, primary_key=True)
     name = Column(String)
