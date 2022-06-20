@@ -22,7 +22,7 @@ def handle_validation_errors(error: ValidationError):
 
 app = Flask(__name__)
 
-app.register_blueprint(project.routes, url_prefix='/api/v1/project/')
+app.register_blueprint(project.routes, url_prefix='/api/v1/projects/')
 app.register_blueprint(balloons.routes, url_prefix='/api/v1/balloons/')
 
 app.register_error_handler(AppError, handle_app_errors)

@@ -18,9 +18,9 @@ class CorrectBalloon(BaseModel):
         orm_mode = True
 
 
-class CorrectProject(BaseModel):
+class Project(BaseModel):
 
-    uid: Optional[PositiveInt]
+    uid: int
     name: str
     created_at: datetime
 
