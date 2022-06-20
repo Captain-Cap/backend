@@ -4,12 +4,12 @@ import orjson
 from flask import Blueprint, request
 
 from cap.schemas import CorrectBalloon
-from cap.sql_storage import SQLBalloonsStorage
+from cap.sql_storage import BalloonsStorage
 
 logger = logging.getLogger(__name__)
 
 routes = Blueprint('balloons', __name__)
-sql_storage = SQLBalloonsStorage()
+sql_storage = BalloonsStorage()
 
 
 @routes.get('/')

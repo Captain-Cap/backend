@@ -6,7 +6,7 @@ from cap.models import Balloons
 from cap.schemas import CorrectBalloon
 
 
-class SQLBalloonsStorage():
+class BalloonsStorage():
     name = 'balloons'
 
     def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
