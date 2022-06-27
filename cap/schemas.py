@@ -1,12 +1,11 @@
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, PositiveInt
 
 
 class CorrectBalloon(BaseModel):
 
-    uid: Optional[PositiveInt]
+    uid: int
     firm: str
     paint_code: str
     color: str
