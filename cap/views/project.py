@@ -24,7 +24,7 @@ def get_projects():
 
 
 @routes.delete('/<int:uid>')
-def del_project(uid):
+def delete(uid):
     pro_storage.delete(uid)
     return {}, 204
 
