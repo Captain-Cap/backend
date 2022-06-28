@@ -24,7 +24,7 @@ def get_projects():
 
 
 @routes.delete('/<int:uid>')
-def del_balloon(uid):
+def delete(uid):
     pro_storage.delete(uid)
     return {}, 204
 
@@ -32,7 +32,7 @@ def del_balloon(uid):
 @routes.get('/<int:uid>')
 def get_balloon_by_id(uid):
     entity = pro_storage.get_by_id(uid)
-    return Project.from_orm(entity).dict()
+    return orjson.dumps(Project.from_orm(entity).dict())
 
 
 @routes.put('/')
@@ -40,4 +40,4 @@ def change_project():
     payload = request.json
     balloon = Project(**payload)
     entity = pro_storage.update(balloon)
-    return Project.from_orm(entity).dict()
+    return orjson.dumps(Project.from_orm(entity).dict())
