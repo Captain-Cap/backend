@@ -48,6 +48,7 @@ class BalloonsStorage():
         entity.voluem = balloon.volume
         entity.weight = balloon.weight
         entity.updated_at = datetime.now()
+        entity.project = balloon.project
 
         db_session.commit()
         return CorrectBalloon.from_orm(entity)
