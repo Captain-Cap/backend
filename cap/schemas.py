@@ -12,6 +12,7 @@ class CorrectBalloon(BaseModel):
     volume: int
     weight: PositiveInt
     acceptance_date: datetime
+    project: str
 
     class Config:
         orm_mode = True

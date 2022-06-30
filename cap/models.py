@@ -16,6 +16,7 @@ class Balloons(Base):
     created_at = Column(TIMESTAMP(timezone=True))
     updated_at = Column(TIMESTAMP(timezone=True))
     acceptance_date = Column(TIMESTAMP(timezone=True))
+    project = Column(String())
 
     def __repr__(self) -> str:
         return f'Balloons {self.uid} {self.firm} {self.color} {self.weight}'

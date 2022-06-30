@@ -2,7 +2,7 @@ from datetime import datetime
 
 from cap.db import db_session
 from cap.errors import NotFoundError
-from cap.models import Balloons
+from cap.models import Balloons, Project
 from cap.schemas import CorrectBalloon
 
 
@@ -10,6 +10,10 @@ class BalloonsStorage():
     name = 'balloons'
 
     def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
+        entity = Project.query.filter(Project.name == balloon.project).first()
+        if not entity:
+            raise NotFoundError(self.name, f'reaseon: project name {balloon.project} not found')
+
         entity = Balloons(
             firm=balloon.firm,
             paint_code=balloon.paint_code,
@@ -19,6 +23,7 @@ class BalloonsStorage():
             created_at=datetime.now(),
             updated_at=datetime.now(),
             acceptance_date=balloon.acceptance_date,
+            project=balloon.project,
         )
         db_session.add(entity)
         db_session.commit()
@@ -56,3 +61,7 @@ class BalloonsStorage():
 
     def get_all(self) -> list[CorrectBalloon]:
         return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]
+
+    def get_balloons_by_name_project(self, name_project) -> list[CorrectBalloon]:
+        balloons = Balloons.query.filter(Balloons.project == name_project)
+        return [CorrectBalloon.from_orm(entity) for entity in balloons]
