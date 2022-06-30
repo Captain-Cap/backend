@@ -10,9 +10,9 @@ class BalloonsStorage():
     name = 'balloons'
 
     def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
-        entity = Project.query.filter(Project.name == balloon.project).first()
+        entity = Project.query.filter(Project.uid == balloon.id_project).first()
         if not entity:
-            raise NotFoundError(self.name, f'reaseon: project name {balloon.project} not found')
+            raise NotFoundError(self.name, f'reaseon: project id {balloon.id_project} not found')
 
         entity = Balloons(
             firm=balloon.firm,
@@ -23,7 +23,7 @@ class BalloonsStorage():
             created_at=datetime.now(),
             updated_at=datetime.now(),
             acceptance_date=balloon.acceptance_date,
-            project=balloon.project,
+            id_project=balloon.id_project,
         )
         db_session.add(entity)
         db_session.commit()
@@ -42,13 +42,17 @@ class BalloonsStorage():
         if not entity:
             raise NotFoundError(self.name, f'reason: balloon id {balloon.uid} not found')
 
+        entity_project = Project.query.filter(Project.uid == balloon.id_project).first()
+        if not entity_project:
+            raise NotFoundError(self.name, f'reaseon: project id {balloon.id_project} not found')
+
         entity.firm = balloon.firm
         entity.paint_code = balloon.paint_code
         entity.color = balloon.color
         entity.voluem = balloon.volume
         entity.weight = balloon.weight
         entity.updated_at = datetime.now()
-        entity.project = balloon.project
+        entity.project = balloon.id_project
 
         db_session.commit()
         return CorrectBalloon.from_orm(entity)
@@ -63,6 +67,6 @@ class BalloonsStorage():
     def get_all(self) -> list[CorrectBalloon]:
         return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]
 
-    def get_balloons_by_name_project(self, name_project) -> list[CorrectBalloon]:
-        balloons = Balloons.query.filter(Balloons.project == name_project)
+    def get_balloons_by_name_project(self, uid) -> list[CorrectBalloon]:
+        balloons = Balloons.query.filter(Balloons.id_project == uid)
         return [CorrectBalloon.from_orm(entity) for entity in balloons]

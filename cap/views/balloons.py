@@ -50,7 +50,7 @@ def change_balloon():
     return orjson.dumps(CorrectBalloon.from_orm(entity).dict())
 
 
-@routes.get('/<name_project>')
-def get_balloons(name_project):
-    balloons = sql_storage.get_balloons_by_name_project(name_project)
+@routes.get('/project/<int:uid>')
+def get_balloons(uid):
+    balloons = sql_storage.get_balloons_by_name_project(uid)
     return orjson.dumps([CorrectBalloon.from_orm(entity).dict() for entity in balloons])
