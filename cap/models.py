@@ -11,7 +11,7 @@ class Project(Base):
     uid = Column(Integer, primary_key=True)
     name = Column(String)
     created_at = Column(TIMESTAMP(timezone=True))
-    balloon = relationship('Balloons')
+    balloons = relationship('Balloons')
 
 
 class Balloons(Base):
@@ -26,7 +26,7 @@ class Balloons(Base):
     created_at = Column(TIMESTAMP(timezone=True))
     updated_at = Column(TIMESTAMP(timezone=True))
     acceptance_date = Column(TIMESTAMP(timezone=True))
-    id_project = Column(Integer(), ForeignKey(Project.uid), nullable=True)
+    project_id = Column(Integer(), ForeignKey(Project.uid), nullable=True)
 
     def __repr__(self) -> str:
         return f'Balloons {self.uid} {self.firm} {self.color} {self.weight}'
