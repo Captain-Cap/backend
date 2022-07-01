@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, PositiveInt
 
@@ -12,6 +13,7 @@ class CorrectBalloon(BaseModel):
     volume: int
     weight: PositiveInt
     acceptance_date: datetime
+    project_id: Optional[int]
 
     class Config:
         orm_mode = True

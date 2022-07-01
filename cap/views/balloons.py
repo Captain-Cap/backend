@@ -48,3 +48,9 @@ def change_balloon():
     balloon = CorrectBalloon(**payload)
     entity = sql_storage.update(balloon)
     return orjson.dumps(CorrectBalloon.from_orm(entity).dict())
+
+
+@routes.get('/free')
+def get_free():
+    balloons = sql_storage.get_free()
+    return orjson.dumps([CorrectBalloon.from_orm(entity).dict() for entity in balloons])

@@ -1,9 +1,14 @@
+import logging
 from datetime import datetime
 
+from sqlalchemy.exc import IntegrityError
+
 from cap.db import db_session
-from cap.errors import NotFoundError
+from cap.errors import ConflictError, NotFoundError
 from cap.models import Balloons
 from cap.schemas import CorrectBalloon
+
+logger = logging.getLogger(__name__)
 
 
 class BalloonsStorage():
@@ -19,9 +24,13 @@ class BalloonsStorage():
             created_at=datetime.now(),
             updated_at=datetime.now(),
             acceptance_date=balloon.acceptance_date,
+            project_id=balloon.project_id,
         )
         db_session.add(entity)
-        db_session.commit()
+        try:
+            db_session.commit()
+        except IntegrityError:
+            raise ConflictError(self.name, f'reason: project id {balloon.project_id} not found')
         return CorrectBalloon.from_orm(entity)
 
     def delete(self, uid) -> None:
@@ -43,8 +52,14 @@ class BalloonsStorage():
         entity.voluem = balloon.volume
         entity.weight = balloon.weight
         entity.updated_at = datetime.now()
+        entity.project_id = balloon.project_id
 
-        db_session.commit()
+        try:
+            db_session.commit()
+        except IntegrityError as err:
+            logger.warning(f'Error: {err}')
+            raise ConflictError(self.name, f'reason: project id {balloon.project_id} not found')
+
         return CorrectBalloon.from_orm(entity)
 
     def get_balloon_by_id(self, uid) -> CorrectBalloon:
@@ -56,3 +71,11 @@ class BalloonsStorage():
 
     def get_all(self) -> list[CorrectBalloon]:
         return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]
+
+    def get_free(self):
+        balloons = Balloons.query.filter(Balloons.project_id.is_(None))
+        return [CorrectBalloon.from_orm(entity) for entity in balloons]
+
+    def get_for_project(self, uid) -> list[CorrectBalloon]:
+        balloons = Balloons.query.filter(Balloons.project_id == uid)
+        return [CorrectBalloon.from_orm(entity) for entity in balloons]
