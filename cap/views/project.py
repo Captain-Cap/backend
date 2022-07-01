@@ -2,10 +2,12 @@ import orjson
 from flask import Blueprint, request
 
 from cap.project_storage import ProjectStorage
-from cap.schemas import Project, CorrectBalloon
+from cap.schemas import CorrectBalloon, Project
+from cap.sql_storage import BalloonsStorage
 
 routes = Blueprint('project', __name__)
 pro_storage = ProjectStorage()
+sql_storage = BalloonsStorage()
 
 
 @routes.post('/')
@@ -43,7 +45,7 @@ def change_project():
     return orjson.dumps(Project.from_orm(entity).dict())
 
 
-@routes.get('/<int:uid>/balloons')
+@routes.get('/<int:uid>/balloons/')
 def get_balloons(uid):
-    balloons = pro_storage.get_for_project(uid)
+    balloons = sql_storage.get_for_project(uid)
     return orjson.dumps([CorrectBalloon.from_orm(entity).dict() for entity in balloons])
