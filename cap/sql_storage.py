@@ -12,7 +12,7 @@ class BalloonsStorage():
     def add(self, balloon: CorrectBalloon) -> CorrectBalloon:
         entity = Project.query.filter(Project.uid == balloon.id_project).first()
         if not entity:
-            raise NotFoundError(self.name, f'reaseon: project id {balloon.id_project} not found')
+            balloon.id_project = None
 
         entity = Balloons(
             firm=balloon.firm,
@@ -42,9 +42,9 @@ class BalloonsStorage():
         if not entity:
             raise NotFoundError(self.name, f'reason: balloon id {balloon.uid} not found')
 
-        entity_project = Project.query.filter(Project.uid == balloon.id_project).first()
-        if not entity_project:
-            raise NotFoundError(self.name, f'reaseon: project id {balloon.id_project} not found')
+        other_entity = Project.query.filter(Project.uid == balloon.id_project).first()
+        if not other_entity:
+            balloon.id_project = None
 
         entity.firm = balloon.firm
         entity.paint_code = balloon.paint_code
@@ -52,7 +52,7 @@ class BalloonsStorage():
         entity.voluem = balloon.volume
         entity.weight = balloon.weight
         entity.updated_at = datetime.now()
-        entity.project = balloon.id_project
+        entity.id_project = balloon.id_project
 
         db_session.commit()
         return CorrectBalloon.from_orm(entity)
@@ -68,5 +68,8 @@ class BalloonsStorage():
         return [CorrectBalloon.from_orm(entity) for entity in Balloons.query.all()]
 
     def get_balloons_by_name_project(self, uid) -> list[CorrectBalloon]:
-        balloons = Balloons.query.filter(Balloons.id_project == uid)
+        if uid == 0:
+            balloons = Balloons.query.filter(Balloons.id_project.is_(None))
+        else:
+            balloons = Balloons.query.join(Project).filter(Project.uid == uid)
         return [CorrectBalloon.from_orm(entity) for entity in balloons]
