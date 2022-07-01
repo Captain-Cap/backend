@@ -2,7 +2,7 @@ import orjson
 from flask import Blueprint, request
 
 from cap.project_storage import ProjectStorage
-from cap.schemas import Project
+from cap.schemas import Project, CorrectBalloon
 
 routes = Blueprint('project', __name__)
 pro_storage = ProjectStorage()
@@ -41,3 +41,9 @@ def change_project():
     balloon = Project(**payload)
     entity = pro_storage.update(balloon)
     return orjson.dumps(Project.from_orm(entity).dict())
+
+
+@routes.get('/<int:uid>/balloons')
+def get_balloons(uid):
+    balloons = pro_storage.get_for_project(uid)
+    return orjson.dumps([CorrectBalloon.from_orm(entity).dict() for entity in balloons])
