@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 from sqlalchemy.exc import IntegrityError
@@ -6,6 +7,8 @@ from cap.db import db_session
 from cap.errors import ConflictError, NotFoundError
 from cap.models import Balloons
 from cap.schemas import CorrectBalloon
+
+logger = logging.getLogger(__name__)
 
 
 class BalloonsStorage():
@@ -53,7 +56,8 @@ class BalloonsStorage():
 
         try:
             db_session.commit()
-        except IntegrityError:
+        except IntegrityError as err:
+            logger.warning(f'Error: {err}')
             raise ConflictError(self.name, f'reason: project id {balloon.project_id} not found')
 
         return CorrectBalloon.from_orm(entity)
@@ -70,4 +74,8 @@ class BalloonsStorage():
 
     def get_free(self):
         balloons = Balloons.query.filter(Balloons.project_id.is_(None))
+        return [CorrectBalloon.from_orm(entity) for entity in balloons]
+
+    def get_for_project(self, uid) -> list[CorrectBalloon]:
+        balloons = Balloons.query.filter(Balloons.project_id == uid)
         return [CorrectBalloon.from_orm(entity) for entity in balloons]

@@ -3,7 +3,7 @@ from datetime import datetime
 from cap import schemas
 from cap.db import db_session
 from cap.errors import NotFoundError
-from cap.models import Project, Balloons
+from cap.models import Project
 
 
 class ProjectStorage():
@@ -47,7 +47,3 @@ class ProjectStorage():
 
         db_session.commit()
         return schemas.Project.from_orm(entity)
-
-    def get_for_project(self, uid) -> list[schemas.CorrectBalloon]:
-        balloons = Balloons.query.filter(Balloons.project_id == uid)
-        return [schemas.CorrectBalloon.from_orm(entity) for entity in balloons]
